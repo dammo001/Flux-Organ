@@ -26,6 +26,7 @@
   AppDispatcher.register(function(action){
     switch(action.actionType){
       case KeyConstants.ADD_KEY:
+
         if (!_keys.includes(action.noteName)){
           _keys.push(action.noteName);
         }

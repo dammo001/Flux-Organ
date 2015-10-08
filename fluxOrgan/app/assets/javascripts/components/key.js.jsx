@@ -10,16 +10,14 @@ var Key = React.createClass({
 
     var that = this;
     var notes = KeyStore.all();
-    if (notes.length === 0){
-      that.sound.stop();
-    }
+    var play;
+
     notes.forEach( function(note) {
-    if (note === parseInt(that.props.num)){
-      that.sound.start();
-    } else {
-      that.sound.stop();
-    }
-  });
+      if (note === parseInt(that.props.num)){ play = true; }
+    });
+
+    play ? that.sound.start() : that.sound.stop();
+    // return that.sound.stop();
   },
 
   render: function(){
