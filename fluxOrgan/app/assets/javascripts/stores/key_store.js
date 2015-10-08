@@ -26,14 +26,31 @@
   AppDispatcher.register(function(action){
     switch(action.actionType){
       case KeyConstants.ADD_KEY:
-        _keys.push(action.noteName);
+        if (!_keys.includes(action.noteName)){
+          _keys.push(action.noteName);
+        }
         root.KeyStore.changed();
         break;
 
-      // case KeyConstants.REMOVE_KEY:
-      //   _keys
+      case KeyConstants.REMOVE_KEY:
+
+        var idx = _keys.indexOf(action.noteName);
+        _keys.splice(idx, 1);
+        root.KeyStore.changed();
+        break;
+
     }
 
   });
+
+  Array.prototype.includes = function(num) {
+    for (var i = 0; i < this.length; i++) {
+      if(this[i] === num){
+        return true;
+      }
+    }
+    return false;
+  };
+
 
 }(this));

@@ -1,7 +1,12 @@
 /* global KeyActions */
 
-var keyListener = function(e){
+var keyDownListener = function(e){
   KeyActions.keyPressed(e.keyCode);
 };
 
-document.addEventListener('keydown', keyListener);
+var keyUpListener = function(e){
+  KeyActions.keyRemoved(e.keyCode);
+}
+
+document.addEventListener('keydown', keyDownListener);
+document.addEventListener('keyup', keyUpListener);
