@@ -6,23 +6,31 @@ var Key = React.createClass({
     KeyStore.addChangeHandler(this.updateChange);
   },
 
+  getInitialState: function(){ 
+    return {playing: false};
+  },
+
   updateChange: function() {
 
     var that = this;
     var notes = KeyStore.all();
     var play;
+    if (notes.length === 0){
+      this.setState({playing: false});
+    }
+    notes.includes(parseInt(this.props.num)) ? this.setState({playing: true}) : this.setState({playing: false});
+    this.playNotes(); 
+  },
 
-    notes.forEach( function(note) {
-      if (note === parseInt(that.props.num)){ play = true; }
-    });
-
-    play ? that.sound.start() : that.sound.stop();
-    // return that.sound.stop();
+  playNotes: function() { 
+    this.state.playing ? this.sound.start() : this.sound.stop(); 
   },
 
   render: function(){
+    var keyPressed = (
+      this.state.playing ? "pressed" : "unpressed" );
     return (
-        <div>test</div>
+        <div className="key" id={keyPressed}>test</div>
     )
   }
 })

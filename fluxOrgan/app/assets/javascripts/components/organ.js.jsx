@@ -1,7 +1,8 @@
 var Organ = React.createClass({
   render: function() {
       return (
-        <div>
+        <div id="organ">
+        <Recorder/> 
           {
 
             Object.keys(window.Tones).map(function(key){

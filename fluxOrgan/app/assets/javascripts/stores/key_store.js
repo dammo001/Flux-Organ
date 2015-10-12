@@ -25,6 +25,7 @@
 
   AppDispatcher.register(function(action){
     switch(action.actionType){
+
       case KeyConstants.ADD_KEY:
 
         if (!_keys.includes(action.noteName)){
@@ -38,6 +39,12 @@
         var idx = _keys.indexOf(action.noteName);
         _keys.splice(idx, 1);
         root.KeyStore.changed();
+        break;
+
+      case KeyConstants.UPDATE_NOTES: 
+        _keys = [];
+        _keys = action.noteName; 
+        root.KeyStore.changed(); 
         break;
 
     }
